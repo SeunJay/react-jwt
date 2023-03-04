@@ -1,6 +1,9 @@
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
+import { setAuthToken } from "../helpers/setAuthToken";
 
 const Login = () => {
+  const navigate = useNavigate();
   //reqres registered sample user
   const loginPayload = {
     email: "eve.holt@reqres.in",
@@ -18,7 +21,13 @@ const Login = () => {
 
       const token = data?.token;
 
-      console.log(token);
+      //set JWT token to local
+      localStorage.setItem("token", token);
+
+      //set token to axios common header
+      setAuthToken(token);
+
+      navigate("/");
     } catch (error) {
       console.log(error);
     }
