@@ -27,6 +27,7 @@ const Login = () => {
       //set token to axios common header
       setAuthToken(token);
 
+
       navigate("/");
     } catch (error) {
       console.log(error);
